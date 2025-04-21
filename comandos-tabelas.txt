@@ -3,6 +3,9 @@ CREATE TABLE Autor(
 	nome varchar(100) not null,
 	data_nascimento date,
 	nacionalidade varchar(50),
+	data_cadastro timestamp not null,
+	data_atualizacao timestamp not null,
+	id_usuario uuid
 
 	CONSTRAINT pk_Autor PRIMARY KEY(id)
 );
@@ -16,6 +19,9 @@ CREATE TABLE Livro(
 	data_publicacao date,
 	genero varchar(30) not null,
 	preco numeric(5,2) not null,
+	data_cadastro timestamp,
+    data_atualizacao timestamp,
+    id_usuario uuid,
 	id_autor uuid not null,
 
 	CONSTRAINT pk_Livro PRIMARY KEY(id),
