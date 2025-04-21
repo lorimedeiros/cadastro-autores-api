@@ -3,7 +3,6 @@ package io.github.lorimedeiros.cadastro_autores_api.controller;
 import io.github.lorimedeiros.cadastro_autores_api.controller.dto.AutorDTO;
 import io.github.lorimedeiros.cadastro_autores_api.model.Autor;
 import io.github.lorimedeiros.cadastro_autores_api.service.AutorService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,10 +31,10 @@ public class AutorController {
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(autorEntidade.getId()) //buildAndExpand colocamos o que jogamos dentro do path
+                .buildAndExpand(autorEntidade.getId())
                 .toUri();
 
-        return ResponseEntity.created(location).build(); //created faz com que retorne o status '201 Created'
+        return ResponseEntity.created(location).build();
     }
 
 }
