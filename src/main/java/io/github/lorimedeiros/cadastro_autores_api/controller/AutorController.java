@@ -4,10 +4,7 @@ import io.github.lorimedeiros.cadastro_autores_api.controller.dto.AutorDTO;
 import io.github.lorimedeiros.cadastro_autores_api.model.Autor;
 import io.github.lorimedeiros.cadastro_autores_api.service.AutorService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
@@ -25,16 +22,17 @@ public class AutorController {
 
     @PostMapping
     public ResponseEntity<Void> salvar(@RequestBody AutorDTO autorDTO){
-        Autor autorEntidade = autorDTO.mapearParaAutor();
-        service.salvar(autorEntidade);
+        Autor autorSalvo = service.salvar(autorDTO.mapearParaAutor());
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(autorEntidade.getId())
+                .buildAndExpand(autorSalvo.getId())
                 .toUri();
 
         return ResponseEntity.created(location).build();
     }
+
+
 
 }

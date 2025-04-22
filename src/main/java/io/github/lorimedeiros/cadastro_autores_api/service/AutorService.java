@@ -18,6 +18,4 @@ public class AutorService {
         return repository.save(autor);
     }
 
-
-
 }
