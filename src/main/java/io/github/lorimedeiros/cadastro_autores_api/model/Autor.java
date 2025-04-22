@@ -17,7 +17,7 @@ import java.util.UUID;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString(exclude = {"livros"})
-@EntityListeners(AuditingEntityListener.class) //essa anotation ativa o listener, que irá 'escutar' quando atualizarmos essas datas
+@EntityListeners(AuditingEntityListener.class)
 public class Autor {
 
     @Id
@@ -37,11 +37,6 @@ public class Autor {
     @OneToMany(mappedBy = "autor")
     private List<Livro> livros;
 
-    // tipo LocalDateTime pois nas tabelas estão os tipos timestamp
-    // timestamp -> data e hora
-    // localdate -> data de nascimento, pois o que realmente importa é a data
-    // createdDate para delegar ao jpa a função de colocar essa data, NESTE CASO data de criação
-    // lastModifiedDate para colocar ultima data de modificação
     @CreatedDate
     @Column(name = "data_cadastro")
     private LocalDateTime dataCadastro;
