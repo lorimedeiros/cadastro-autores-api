@@ -2,6 +2,7 @@ package io.github.lorimedeiros.cadastro_autores_api.controller;
 
 import io.github.lorimedeiros.cadastro_autores_api.controller.dto.AutorDTO;
 import io.github.lorimedeiros.cadastro_autores_api.controller.dto.ErroResposta;
+import io.github.lorimedeiros.cadastro_autores_api.exceptions.OperacaoNaoPermitidaException;
 import io.github.lorimedeiros.cadastro_autores_api.exceptions.RegistroDuplicadoException;
 import io.github.lorimedeiros.cadastro_autores_api.model.Autor;
 import io.github.lorimedeiros.cadastro_autores_api.service.AutorService;
@@ -66,16 +67,25 @@ public class AutorController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable("id") String id){
-        var idAutor = UUID.fromString(id);
-        Optional<Autor> autorOptional = service.obterPorId(idAutor);
+    public ResponseEntity<Object> deletar(@PathVariable("id") String id){
 
-        if (autorOptional.isEmpty()) {
-            return ResponseEntity.notFound().build();
+        try {
+
+            var idAutor = UUID.fromString(id);
+            Optional<Autor> autorOptional = service.obterPorId(idAutor);
+
+            if (autorOptional.isEmpty()) {
+                return ResponseEntity.notFound().build();
+            }
+
+            service.deletar(autorOptional.get());
+            return ResponseEntity.noContent().build();
+
+        } catch (OperacaoNaoPermitidaException e) {
+            var erroResposta = ErroResposta.respostaPadrao(e.getMessage());
+            return ResponseEntity.status(erroResposta.status()).body(erroResposta);
         }
 
-        service.deletar(autorOptional.get());
-        return ResponseEntity.noContent().build();
     }
 
     @GetMapping
