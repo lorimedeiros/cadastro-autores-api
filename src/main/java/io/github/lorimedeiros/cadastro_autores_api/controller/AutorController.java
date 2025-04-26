@@ -6,6 +6,7 @@ import io.github.lorimedeiros.cadastro_autores_api.exceptions.OperacaoNaoPermiti
 import io.github.lorimedeiros.cadastro_autores_api.exceptions.RegistroDuplicadoException;
 import io.github.lorimedeiros.cadastro_autores_api.model.Autor;
 import io.github.lorimedeiros.cadastro_autores_api.service.AutorService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,7 @@ public class AutorController {
     private final AutorService service;
 
     @PostMapping
-    public ResponseEntity<Object> salvar(@RequestBody AutorDTO autorDTO){
+    public ResponseEntity<Object> salvar(@RequestBody @Valid AutorDTO autorDTO){
 
         try {
 
