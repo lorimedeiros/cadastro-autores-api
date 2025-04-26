@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY) //isso mapeia para que um método sempre retorne um status especifico, neste caso, é o UNPROCESSABLE_ENTITY
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
     public ErroResposta handleMethodArgumentNotValidException(MethodArgumentNotValidException e){
         List<FieldError> fieldError = e.getFieldErrors();
         List<ErroCampo> listaErros = fieldError
