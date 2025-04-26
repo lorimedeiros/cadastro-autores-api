@@ -6,6 +6,7 @@ import io.github.lorimedeiros.cadastro_autores_api.exceptions.OperacaoNaoPermiti
 import io.github.lorimedeiros.cadastro_autores_api.exceptions.RegistroDuplicadoException;
 import io.github.lorimedeiros.cadastro_autores_api.model.Autor;
 import io.github.lorimedeiros.cadastro_autores_api.service.AutorService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -17,15 +18,12 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/autores")
 // http://localhost:8080/autores
 public class AutorController {
 
     private final AutorService service;
-
-    public AutorController(AutorService service){
-        this.service = service;
-    }
 
     @PostMapping
     public ResponseEntity<Object> salvar(@RequestBody AutorDTO autorDTO){
