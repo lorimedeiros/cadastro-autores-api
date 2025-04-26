@@ -45,7 +45,6 @@ public class Autor {
     @Column(name = "data_atualizacao")
     private LocalDateTime dataAtualizacao;
 
-    // no usuario não mexemos, por hora
     @Column(name = "id_usuario")
     private UUID idUsuario;
 

@@ -34,6 +34,8 @@ public class AutorController {
                 .buildAndExpand(autorSalvo.getId())
                 .toUri();
 
+
+
         return ResponseEntity.created(location).build();
     }
 
@@ -68,10 +70,10 @@ public class AutorController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping //obs: não podemos ter métodos repetidos, se eu passasse um get com parâmetro, igual o método 'obterDetalhes' ocorreria um conflito
+    @GetMapping
     public ResponseEntity<List<AutorDTO>> pesquisar(
             @RequestParam(value = "nome", required = false) String nome,
-            @RequestParam(value = "nacionalidade", required = false) String nacionalidaade){ //esse required false significa que são opcionais, não obrigatórios
+            @RequestParam(value = "nacionalidade", required = false) String nacionalidaade){
 
         List<Autor> resultado = service.pesquisa(nome, nacionalidaade);
         List<AutorDTO> lista = resultado
