@@ -6,6 +6,8 @@ import io.github.lorimedeiros.cadastro_autores_api.repository.AutorRepository;
 import io.github.lorimedeiros.cadastro_autores_api.repository.LivroRepository;
 import io.github.lorimedeiros.cadastro_autores_api.validator.AutorValidator;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -45,6 +47,21 @@ public class AutorService {
             return repository.findByNacionalidade(nacionalidade);
         }
         return repository.findAll();
+    }
+
+    public List<Autor> pesquisaByExample(String nome, String nacionalidade){
+        var autor = new Autor();
+        autor.setNome(nome);
+        autor.setNacionalidade(nacionalidade);
+
+        ExampleMatcher matcher = ExampleMatcher //o matcher é uma estrategia de como tratar aquele valor recebido
+                .matching()
+                .withIgnorePaths("id", "dataNascimento", "dataCadastro") //ignora paths
+                .withIgnoreNullValues()
+                .withIgnoreCase()
+                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING); //contento aquela string recebida em qualquer parte do nome
+        Example<Autor> autorExample = Example.of(autor, matcher);
+        return repository.findAll(autorExample);
     }
 
     public void atualizar(Autor autor){

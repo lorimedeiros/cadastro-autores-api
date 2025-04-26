@@ -31,4 +31,4 @@ public record AutorDTO(
         return autor;
     }
 
-} //existem muitas outras anotações de validação, desde CPF até email
+}
