@@ -19,8 +19,8 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/autores")
+@RequiredArgsConstructor
 // http://localhost:8080/autores
 public class AutorController {
 
