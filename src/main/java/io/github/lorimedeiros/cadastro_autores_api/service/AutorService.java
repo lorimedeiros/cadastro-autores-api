@@ -54,12 +54,12 @@ public class AutorService {
         autor.setNome(nome);
         autor.setNacionalidade(nacionalidade);
 
-        ExampleMatcher matcher = ExampleMatcher //o matcher é uma estrategia de como tratar aquele valor recebido
+        ExampleMatcher matcher = ExampleMatcher
                 .matching()
-                .withIgnorePaths("id", "dataNascimento", "dataCadastro") //ignora paths
+                .withIgnorePaths("id", "dataNascimento", "dataCadastro")
                 .withIgnoreNullValues()
                 .withIgnoreCase()
-                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING); //contento aquela string recebida em qualquer parte do nome
+                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
         Example<Autor> autorExample = Example.of(autor, matcher);
         return repository.findAll(autorExample);
     }
