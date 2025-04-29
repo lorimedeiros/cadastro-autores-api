@@ -2,6 +2,7 @@ package io.github.lorimedeiros.cadastro_autores_api.controller;
 
 import io.github.lorimedeiros.cadastro_autores_api.controller.dto.AutorDTO;
 import io.github.lorimedeiros.cadastro_autores_api.controller.dto.ErroResposta;
+import io.github.lorimedeiros.cadastro_autores_api.controller.mappers.AutorMapper;
 import io.github.lorimedeiros.cadastro_autores_api.exceptions.OperacaoNaoPermitidaException;
 import io.github.lorimedeiros.cadastro_autores_api.exceptions.RegistroDuplicadoException;
 import io.github.lorimedeiros.cadastro_autores_api.model.Autor;
@@ -25,18 +26,20 @@ import java.util.stream.Collectors;
 public class AutorController {
 
     private final AutorService service;
+    private final AutorMapper mapper;
 
     @PostMapping
-    public ResponseEntity<Object> salvar(@RequestBody @Valid AutorDTO autorDTO){
+    public ResponseEntity<Object> salvar(@RequestBody @Valid AutorDTO dto){
 
         try {
 
-            Autor autorSalvo = service.salvar(autorDTO.mapearParaAutor());
+            Autor autor = mapper.toEntity(dto);
+            service.salvar(autor);
 
             URI location = ServletUriComponentsBuilder
                     .fromCurrentRequest()
                     .path("/{id}")
-                    .buildAndExpand(autorSalvo.getId())
+                    .buildAndExpand(autor.getId())
                     .toUri();
 
             return ResponseEntity.created(location).build();
@@ -52,17 +55,13 @@ public class AutorController {
         var idAutor = UUID.fromString(id);
         Optional<Autor> autorOptional = service.obterPorId(idAutor);
 
-        if (autorOptional.isPresent()) {
-            Autor autor = autorOptional.get();
-            AutorDTO dto = new AutorDTO(
-                    autor.getId(),
-                    autor.getNome(),
-                    autor.getDataNascimento(),
-                    autor.getNacionalidade());
+        return service
+                .obterPorId(idAutor)
+                .map(autor -> {
+            AutorDTO dto = mapper.toDTO(autor);
             return ResponseEntity.ok(dto);
-        }
+        }).orElseGet( () -> ResponseEntity.notFound().build() );
 
-        return ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{id}")
@@ -95,12 +94,8 @@ public class AutorController {
         List<Autor> resultado = service.pesquisaByExample(nome, nacionalidaade);
         List<AutorDTO> lista = resultado
                 .stream()
-                .map(autor -> new AutorDTO(
-                        autor.getId(),
-                        autor.getNome(),
-                        autor.getDataNascimento(),
-                        autor.getNacionalidade())
-                ).collect(Collectors.toList());
+                .map(mapper::toDTO)
+                .collect(Collectors.toList());
 
         return ResponseEntity.ok(lista);
 
@@ -124,6 +119,9 @@ public class AutorController {
             autor.setNome(dto.nome());
             autor.setNacionalidade(dto.nacionalidade());
             autor.setDataNascimento(dto.dataNascimento());
+            //POR QUAL RAZÃO NÃO USAR MAPPER AQUI??
+            //ele mapearia apenas esses 3 campos que sofrem atualização e deixaria os demais nulos
+            //por isso, neste método, não usamos o mapper
 
             service.atualizar(autor);
 
