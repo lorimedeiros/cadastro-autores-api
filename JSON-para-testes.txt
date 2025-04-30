@@ -1,0 +1,44 @@
+Autor 1
+{
+    "nome" : "Mary Shelley",
+    "dataNascimento" : "1797-08-30",
+    "nacionalidade" : "Inglesa"
+}
+
+Autor 2
+{
+    "nome" : "Bram Stoker",
+    "dataNascimento" : "1847-11-08",
+    "nacionalidade" : "Irlandesa"
+}
+
+Autor 3
+{
+    "nome" : "Gaston Leroux",
+    "dataNascimento" : "1869-05-06",
+    "nacionalidade" : "Francesa"
+}
+
+Autor 4
+{
+    "nome" : "Fiódor Dostoiévski",
+    "dataNascimento" : "1821-11-11",
+    "nacionalidade" : "Russa"
+}
+
+Autor 5
+{
+    "nome" : "Franz Kafka",
+    "dataNascimento" : "1883-07-03",
+    "nacionalidade" : "Tcheca"
+}
+
+Livro 1 (para autor: Gaston Leroux)
+{
+    "isbn" : "978-1585424337",
+    "titulo" : "Le Fantôme de l'Opéra",
+    "dataPublicacao" : "1909-09-23",
+    "genero" : "ROMANCE",
+    "preco" : 60,
+    "idAutor" : "2465957e-d8ca-45ed-ae86-a74d1ddb8c70"
+}

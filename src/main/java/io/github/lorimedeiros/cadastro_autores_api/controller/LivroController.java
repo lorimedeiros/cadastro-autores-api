@@ -1,16 +1,16 @@
 package io.github.lorimedeiros.cadastro_autores_api.controller;
 
 import io.github.lorimedeiros.cadastro_autores_api.controller.dto.CadastroLivroDTO;
+import io.github.lorimedeiros.cadastro_autores_api.controller.dto.PesquisaLivroDTO;
 import io.github.lorimedeiros.cadastro_autores_api.controller.mappers.LivroMapper;
 import io.github.lorimedeiros.cadastro_autores_api.model.Livro;
 import io.github.lorimedeiros.cadastro_autores_api.service.LivroService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/livros")
@@ -29,4 +29,14 @@ public class LivroController implements GenericController {
         return ResponseEntity.created(url).build();
 
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PesquisaLivroDTO> obterDetalhes(@PathVariable("id") String id){
+        return service.obterPorId(UUID.fromString(id))
+                .map(livro -> {
+                    var dto = mapper.toDTO(livro);
+                    return ResponseEntity.ok(dto);
+                }).orElseGet( () -> ResponseEntity.notFound().build() );
+    }
+
 }
