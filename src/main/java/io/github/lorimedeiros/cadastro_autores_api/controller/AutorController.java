@@ -119,9 +119,6 @@ public class AutorController {
             autor.setNome(dto.nome());
             autor.setNacionalidade(dto.nacionalidade());
             autor.setDataNascimento(dto.dataNascimento());
-            //POR QUAL RAZÃO NÃO USAR MAPPER AQUI??
-            //ele mapearia apenas esses 3 campos que sofrem atualização e deixaria os demais nulos
-            //por isso, neste método, não usamos o mapper
 
             service.atualizar(autor);
 
