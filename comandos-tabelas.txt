@@ -26,7 +26,7 @@ CREATE TABLE Livro(
 
 	CONSTRAINT pk_Livro PRIMARY KEY(id),
 	CONSTRAINT un_Livro_isbn UNIQUE(isbn),
-	CONSTRAINT fk_Livro_Id_Autor FOREIGN KEY (id_autor) REFERENCES Autor,
+	CONSTRAINT fk_Livro_Id_Autor FOREIGN KEY (id_autor) REFERENCES Autor(id),
 	CONSTRAINT ck_Livro_Genero CHECK(genero IN('FICCAO','FANTASIA','MISTERIO','ROMANCE','BIOGRAFIA','CIENCIA')),
 	CONSTRAINT ck_Livro_Preco CHECK(preco > 0)
 );

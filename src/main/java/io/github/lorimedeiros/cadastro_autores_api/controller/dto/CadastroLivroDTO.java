@@ -1,10 +1,7 @@
 package io.github.lorimedeiros.cadastro_autores_api.controller.dto;
 
 import io.github.lorimedeiros.cadastro_autores_api.model.GeneroLivro;
-import jakarta.validation.constraints.Negative;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.*;
 import org.hibernate.validator.constraints.ISBN;
 
 import java.math.BigDecimal;
@@ -21,7 +18,7 @@ public record CadastroLivroDTO(
         @Past(message = "Não pode ser uma data futura")
         LocalDate dataPublicacao,
         GeneroLivro genero,
-        @Negative(message = "Não pode ser um valor negativo")
+        @Positive(message = "Não pode ser um valor negativo")
         BigDecimal preco,
         @NotNull(message = "Campo obrigatório")
         UUID idAutor) {
