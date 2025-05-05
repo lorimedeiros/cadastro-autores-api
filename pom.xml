@@ -54,10 +54,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- Não colocar essa dependencia de segurança no inicio do projeto. Apenas quando for, realmente, mexer com a segurança. é perigoso usar sem configurar. -->
-		<!-- Por padrão, ela é uma authorization basic, usuário: user; e senha dada no terminal spring. -->
-		<!-- Na sessão Authorization da apk de requisições podemos colocar esses dados para realizar requisições. -->
-		<!-- Erro 401 implica alguma falha na autorização. -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
