@@ -12,4 +12,10 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
+	// 1 - import da thymeleaf no pom.xml
+	// 2 - criação da view de login
+	// 3 - criação da configuração MVC WebConfiguration + registro da view
+	// 4 - criação do controller para acessar a pagina atraves do /login
+	// 5 - por ultimo colocamos a customização no securityconfiguration
+
 }
