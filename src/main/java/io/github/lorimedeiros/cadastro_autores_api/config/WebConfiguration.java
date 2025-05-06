@@ -16,7 +16,4 @@ public class WebConfiguration implements WebMvcConfigurer {
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
 
-    //primeiro nome login -> endereço no browser
-    //segundo nome login -> nome da view na pasta templates (dentro de resources
-
 }

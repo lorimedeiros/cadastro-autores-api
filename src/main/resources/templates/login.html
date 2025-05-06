@@ -54,7 +54,7 @@
         .input-group-text {
             background-color: #2a2a2a;
             border: 1px solid #444;
-            color: #ff5e5e;
+            color: #ff8a8a;
         }
         h2 {
             color: #ff5e5e;
@@ -62,6 +62,29 @@
         }
         .bi-person-circle {
             color: #ff2a2a !important;
+        }
+        ::placeholder {
+            color: #aaaaaa !important;
+            opacity: 1;
+        }
+        :-ms-input-placeholder {
+            color: #aaaaaa !important;
+        }
+        ::-ms-input-placeholder {
+            color: #aaaaaa !important;
+        }
+        /* Corrige autocomplete do Chrome */
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active {
+            -webkit-text-fill-color: #ff8a8a !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+
+        /* Mantém cor do placeholder em foco */
+        input:focus::placeholder {
+            color: #ff8a8a !important;
         }
     </style>
 </head>
@@ -93,8 +116,6 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary w-100">Entrar</button>
-
-                <!-- Campo CSRF para proteção contra ataques (obrigatório no Spring Security) -->
 
             </form>
         </div>

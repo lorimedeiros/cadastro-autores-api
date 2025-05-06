@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class LoginViewController {
 
     @GetMapping("/login")
-    public String paginaLogin(){ //dentro de um controller, retornamos strings
-        return "login"; //aqui colocamos o nome que está no template
+    public String paginaLogin(){
+        return "login";
     }
 
 }

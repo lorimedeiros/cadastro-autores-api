@@ -18,7 +18,7 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .httpBasic(Customizer.withDefaults())
                 .formLogin(configurer -> {
-                    configurer.loginPage("/login").permitAll(); //essa é minha página de login e todos são permitidos de realizar login
+                    configurer.loginPage("/login").permitAll();
                 })
                 .authorizeHttpRequests(authorize -> {
                     authorize.anyRequest().authenticated();
