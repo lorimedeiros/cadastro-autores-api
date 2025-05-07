@@ -12,9 +12,9 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-	// 1 -> criado método userDetailsService na classe SecurityConfiguration
-	// 2 -> criado o codificador e decodificador, que é o passwordEncoder usando BCrypt
-	// 3 -> foi colcado o encoder.encode nos passwords de userDetailsService
-	// FINAL -> depois disso é só dar uma brincadinha no Postman com Basic Auth ou usando o form np browser
+	// finalidade: entender como o security aplica roles (temos USER e ADMIN definidas)
+	// 1 -> no método securityFilterChain, dentro de .authorizeHttpRequests estão os métodos e explicações
+	// 2 -> é possivel testar no postman as autorizações e negações.
+	// 403 Forbidden significa que foi barrado; senha incorreta seria 401
 
 }
