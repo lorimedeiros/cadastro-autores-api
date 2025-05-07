@@ -32,3 +32,12 @@ CREATE TABLE Livro(
 );
 
 SELECT * FROM Livro
+
+CREATE TABLE Usuario(
+    id uuid not null,
+    login varchar(20) not null,
+    senha varchar(300) not null,   //300 pois o codificador vai transformar a senha em algo enorme
+    roles varchar[],               //assim se declara uma array
+
+    CONSTRAINT pk_Usuario PRIMARY KEY(id)
+);

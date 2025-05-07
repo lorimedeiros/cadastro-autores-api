@@ -29,38 +29,13 @@ public class SecurityConfiguration {
                 })
                 .authorizeHttpRequests(authorize -> {
                     authorize.requestMatchers("/login").permitAll();
-                    //permitAll -> não recomendado, completamente inseguro; APENAS para login
-                    //pois qualquer um pode acessar livremente, mesmo não autenticado
-
                     authorize.requestMatchers(HttpMethod.POST, "/autores/**").hasRole("ADMIN");
                     authorize.requestMatchers(HttpMethod.DELETE, "/autores/**").hasRole("ADMIN");
                     authorize.requestMatchers(HttpMethod.PUT, "/autores/**").hasRole("ADMIN");
-                    //assim eu dito que APENAS admin pode alterar autores (os outros roles ainda podem ver com GET)
-
                     authorize.requestMatchers(HttpMethod.GET, "/autores/**").hasAnyRole("ADMIN", "USER");
-                    //deixando explicito que ambos users podem dar get em autores
-
-                    /*
-                    authorize.requestMatchers("/autores/**").hasRole("ADMIN");
-                    */
-                    //** -> se trata de um coringa, pode ler como "qualquer coisa que venha depois do autores/"
-                    //assim seria se apenas o admin pudesse acessar qualquer que fosse a requisição de autor
-
                     authorize.requestMatchers("/livros/**").hasAnyRole("USER", "ADMIN");
 
-                    //hasRole("USER") -> se eu colocasse isso aqui iria restringir o admin de acessar os livros
-                    //hasAnyRole() -> agora sim, qualquer role descrita dentro do parâmetro pode acessar essa url
-
                     authorize.anyRequest().authenticated();
-                    //essa linha acima garante que qualquer url, mesmo as não mapeadas, como feito mais acima,
-                    //precise que o usuário esteja, ao menos, autenticado para poder acessar
-                    //OBS: anyRequest precisa estar por ultimo, como feito aqui, pois ele anula qualquer coisa abaixo dele
-
-                    //ou seja: requestMatchers permite apontar uma url especifica; anyRequest para aplicar ação em todas
-
-                    // Authority x Role
-                    // role é um grupo de usuário, papel que você exerce na empresa
-                    // authority é uma permissão de executar uma tarefa/operação
                 })
                 .build();
     }
