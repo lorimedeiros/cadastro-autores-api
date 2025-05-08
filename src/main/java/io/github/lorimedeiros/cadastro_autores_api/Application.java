@@ -12,26 +12,9 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-	// 1 -> criação do repository, service, mapper, dto e controller de usuarios
-	// 2 -> permitindo que seja possivel cadastrar usuario sem estar autenticado (em SecurityConfiguration -> securityFilterChain
-
-	/*
-	bodys - json:
-	{
-    "login" : "admin",
-    "senha" : "admin123",
-    "roles" : [
-        "ADMIN"
-        ]
-	}
-
-	{
-    "login" : "tecnico",
-    "senha" : "123",
-    "roles" : [
-        "TECNICO"
-        ]
-	}
-	*/
+	// 1 -> criação do pacote security, bem como a classe CustomUserDetailsService
+	// 2 -> remoção dos usuários em memória de SecurityConfiguration, no método userDetailsService
+	// admin : admin123
+	// tecnico : 123
 
 }
