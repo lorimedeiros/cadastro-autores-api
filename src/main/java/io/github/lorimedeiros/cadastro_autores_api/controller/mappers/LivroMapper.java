@@ -8,7 +8,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
 
-@Mapper(componentModel = "spring", uses = AutorMapper.class) //deixa claro que esse mapper pode usar esse outro (de autor) se precisar (no caso do meu toDTO que tem um atributo de autor)
+@Mapper(componentModel = "spring", uses = AutorMapper.class)
 public abstract class LivroMapper {
 
     @Autowired
