@@ -2,8 +2,10 @@ package io.github.lorimedeiros.cadastro_autores_api.service;
 
 import io.github.lorimedeiros.cadastro_autores_api.exceptions.OperacaoNaoPermitidaException;
 import io.github.lorimedeiros.cadastro_autores_api.model.Autor;
+import io.github.lorimedeiros.cadastro_autores_api.model.Usuario;
 import io.github.lorimedeiros.cadastro_autores_api.repository.AutorRepository;
 import io.github.lorimedeiros.cadastro_autores_api.repository.LivroRepository;
+import io.github.lorimedeiros.cadastro_autores_api.security.SecurityService;
 import io.github.lorimedeiros.cadastro_autores_api.validator.AutorValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
@@ -21,9 +23,12 @@ public class AutorService {
     private final AutorRepository repository;
     private final AutorValidator validator;
     private final LivroRepository livroRepository;
+    private final SecurityService securityService;
 
     public Autor salvar(Autor autor){
         validator.validar(autor);
+        Usuario usuario = securityService.obterUsuarioLogado();
+        autor.setUsuario(usuario);
         return repository.save(autor);
     }
 

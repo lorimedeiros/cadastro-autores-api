@@ -2,7 +2,9 @@ package io.github.lorimedeiros.cadastro_autores_api.service;
 
 import io.github.lorimedeiros.cadastro_autores_api.model.GeneroLivro;
 import io.github.lorimedeiros.cadastro_autores_api.model.Livro;
+import io.github.lorimedeiros.cadastro_autores_api.model.Usuario;
 import io.github.lorimedeiros.cadastro_autores_api.repository.LivroRepository;
+import io.github.lorimedeiros.cadastro_autores_api.security.SecurityService;
 import io.github.lorimedeiros.cadastro_autores_api.validator.LivroValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -22,9 +24,12 @@ public class LivroService {
 
     private final LivroRepository repository;
     private final LivroValidator validator;
+    private final SecurityService securityService;
 
     public Livro salvar(Livro livro) {
         validator.validar(livro);
+        Usuario usuario = securityService.obterUsuarioLogado();
+        livro.setUsuario(usuario);
         return repository.save(livro);
     }
 

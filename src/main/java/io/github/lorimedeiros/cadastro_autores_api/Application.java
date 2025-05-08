@@ -12,27 +12,10 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-	// 1 -> tiramos de SecurityConfiguration, no método securityFilterChain, as permissões de cada endpoint feitas na mão
-	// 2 -> em livrocontroller, colocamos a anotation @PreAuthorize("hasAnyRole('OPERADOR','GERENTE')") em todos os métodos. Pois, seguindo a regra de negócio, tanto operador quanto gerente podem acessar tudo em Livro
-	// OBS: como em todos os métodos são a mesma regra, eu poderia apenas aplicar a anotação em cima da classe, assim valeria para tudo
-	// 3 -> regras no controller de autores
-
-	/*
-	{
-    "login" : "operador",
-    "senha" : "123",
-    "roles" : [
-        "OPERADOR"
-        ]
-	}
-
-	{
-    "login" : "gerente",
-    "senha" : "321",
-    "roles" : [
-        "GERENTE"
-        ]
-	}
-	*/
+	// 1 -> criação do Security Service para fazer a logica de obter o usuario que realizou determinada requisição
+	// 2 -> Injeção do Security service no método salvar Autor Service
+	// 3 -> alteração em Autor, agora não recebe mais id do usuario, mas sim o objeto usuario todo
+	// 4 -> Injeção do Security service no método salvar Livro Service
+	// 5 -> alteração em Livro, agora não recebe mais id do usuario, mas sim o objeto usuario todo
 
 }

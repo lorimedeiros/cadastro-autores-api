@@ -3,11 +3,13 @@ package io.github.lorimedeiros.cadastro_autores_api.controller;
 import io.github.lorimedeiros.cadastro_autores_api.controller.dto.AutorDTO;
 import io.github.lorimedeiros.cadastro_autores_api.controller.mappers.AutorMapper;
 import io.github.lorimedeiros.cadastro_autores_api.model.Autor;
+import io.github.lorimedeiros.cadastro_autores_api.security.SecurityService;
 import io.github.lorimedeiros.cadastro_autores_api.service.AutorService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -27,7 +29,7 @@ public class AutorController implements GenericController{
 
     @PostMapping
     @PreAuthorize("hasRole('GERENTE')")
-    public ResponseEntity<Void> salvar(@RequestBody @Valid AutorDTO dto){
+    public ResponseEntity<Void> salvar(@RequestBody @Valid AutorDTO dto, Authentication auth){
 
         Autor autor = mapper.toEntity(dto);
         service.salvar(autor);
