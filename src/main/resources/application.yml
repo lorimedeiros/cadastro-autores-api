@@ -1,6 +1,6 @@
 spring:
   application:
-    name: cadastro-autores-api
+    name: livraria-api
   datasource:
     url: jdbc:postgresql://localhost:5432/livraria
     username: postgres

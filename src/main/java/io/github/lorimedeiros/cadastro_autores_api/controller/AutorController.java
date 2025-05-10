@@ -3,7 +3,6 @@ package io.github.lorimedeiros.cadastro_autores_api.controller;
 import io.github.lorimedeiros.cadastro_autores_api.controller.dto.AutorDTO;
 import io.github.lorimedeiros.cadastro_autores_api.controller.mappers.AutorMapper;
 import io.github.lorimedeiros.cadastro_autores_api.model.Autor;
-import io.github.lorimedeiros.cadastro_autores_api.security.SecurityService;
 import io.github.lorimedeiros.cadastro_autores_api.service.AutorService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

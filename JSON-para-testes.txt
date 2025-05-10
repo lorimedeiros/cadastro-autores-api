@@ -1,3 +1,4 @@
+AUTORES:
 Autor 1
 {
     "nome" : "Mary Shelley",
@@ -33,6 +34,7 @@ Autor 5
     "nacionalidade" : "Tcheca"
 }
 
+LIVROS:
 Livro 1 (para autor: Gaston Leroux)
 {
     "isbn" : "978-1585424337",
@@ -41,4 +43,23 @@ Livro 1 (para autor: Gaston Leroux)
     "genero" : "ROMANCE",
     "preco" : 60,
     "idAutor" : "2465957e-d8ca-45ed-ae86-a74d1ddb8c70"
+}
+
+USUARIOS:
+User 1:
+{
+    "login" : "gerente",
+    "senha" : "321",
+    "roles" : [
+        "GERENTE"
+        ]
+}
+
+User 2:
+{
+    "login" : "operador",
+    "senha" : "123",
+    "roles" : [
+        "OPERADOR"
+        ]
 }

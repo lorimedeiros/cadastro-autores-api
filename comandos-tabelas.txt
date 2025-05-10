@@ -5,7 +5,7 @@ CREATE TABLE Autor(
 	nacionalidade varchar(50),
 	data_cadastro timestamp not null,
 	data_atualizacao timestamp not null,
-	id_usuario uuid
+	id_usuario uuid,
 
 	CONSTRAINT pk_Autor PRIMARY KEY(id)
 );
