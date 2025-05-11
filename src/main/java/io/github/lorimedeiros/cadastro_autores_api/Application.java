@@ -19,4 +19,6 @@ public class Application {
 	// 4 -> dando umas ajustadas no security configuration
 	// 5 -> adicionando redirecionamento para raiz (para teste) em login view controller
 
+	// git push origin main
+
 }
