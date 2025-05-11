@@ -1,6 +1,6 @@
 spring:
   application:
-    name: livraria-api
+    name: cadastro-autores-api
   datasource:
     url: jdbc:postgresql://localhost:5432/livraria
     username: postgres
@@ -12,3 +12,10 @@ spring:
       ddl-auto: none
     properties:
       hibernate.format_sql: true
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 702593416183-9mhmnodus736pighmfb98bgfm3n7s2ml.apps.googleusercontent.com
+            client-secret: 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

@@ -10,9 +10,9 @@
 	</parent>
 
 	<groupId>io.github.lorimedeiros</groupId>
-	<artifactId>livraria-api</artifactId>
+	<artifactId>cadastro-autores-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>livraria-api</name>
+	<name>cadastro-autores-api</name>
 	<description>API de uma livraria</description>
 
 	<properties>
@@ -62,6 +62,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-client</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
