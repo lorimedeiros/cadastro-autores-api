@@ -12,13 +12,8 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-	// 1 -> https://github.com/lorimedeiros/Resum-es-muito-importantes-para-o-desenvolver-da-humanidade/blob/main/Spring%20Boot/03.%20Autenticando%20com%20conta%20Google%20.md
-	// após todo esse bereguedê de configuração do google cloud... (até o 2º módulo do .md)
-	// 2 -> adicionada dependencia oauth2 no pom.xml e reload no maeven (+ clean e install)
-	// 3 -> adicionada configração do oauth2 em application.yml (essas chaves são obtidas no google cloud
-	// 4 -> dando umas ajustadas no security configuration
-	// 5 -> adicionando redirecionamento para raiz (para teste) em login view controller
-
-	// git push origin main
+	// Customização do usuário. Transformando os dados do Google no meu tipo de usuário.
+	// 1 -> Criada a classe CustomAuthentication, dentro do pacote security
+	// 2 -> implementados e customizados os métodos do 'implements Authentication'
 
 }
