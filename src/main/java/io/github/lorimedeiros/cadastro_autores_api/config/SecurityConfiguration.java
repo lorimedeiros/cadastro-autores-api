@@ -52,6 +52,6 @@ public class SecurityConfiguration {
     @Bean
     public GrantedAuthorityDefaults grantedAuthorityDefaults(){
         return new GrantedAuthorityDefaults("");
-    }//basicamente, colocamos no construtor qual prefixo queremos, já que o objetivo é remover o prefixo, apenas deixamos uma string vazia
+    }
 
 }
