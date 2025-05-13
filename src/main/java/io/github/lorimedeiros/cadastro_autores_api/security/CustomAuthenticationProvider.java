@@ -22,7 +22,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
         String login = authentication.getName();
-        String senhaDigitada = authentication.getCredentials().toString(); //o que foi digitado no formulário
+        String senhaDigitada = authentication.getCredentials().toString();
 
         Usuario usuarioEncontrado = service.obterPorLogin(login);
 
@@ -39,7 +39,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
         throw getErroUsuarioNaoEncontrado();
 
-    } //método para autenticar, aqui vamos fazer o que o spring security faz por debaixo dos panos no método 'loadUserByUsername' de CustomUserDetailsService
+    }
 
     public UsernameNotFoundException getErroUsuarioNaoEncontrado(){
         return new UsernameNotFoundException("Usuário e/ou senha incorretos!");
@@ -48,5 +48,5 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     @Override
     public boolean supports(Class<?> authentication) {
         return authentication.isAssignableFrom(UsernamePasswordAuthenticationToken.class);
-    } //vai dizer quais os tipos de authentication que suporta essa classe authentication provider
+    }
 }
