@@ -20,14 +20,14 @@ public class CustomAuthentication implements Authentication {
     public Collection<GrantedAuthority> getAuthorities() {
         return this.usuario
                 .getRoles()
-                .stream().map(role -> new SimpleGrantedAuthority(role))
+                .stream().map(role -> new SimpleGrantedAuthority("ROLE_" + role)) //Essa é uma solução para o prefixo ROLE_
                 .collect(Collectors.toList());
-    } //aqui retornamos os Authorities (que são as roles do nosso usuário, existe uma lista pra isso na classe usuário)
+    }
 
     @Override
     public Object getCredentials() {
         return null;
-    } //implementação será feita posteriormente
+    }
 
     @Override
     public Object getDetails() {
@@ -42,7 +42,7 @@ public class CustomAuthentication implements Authentication {
     @Override
     public boolean isAuthenticated() {
         return true;
-    } //se deixar false, você nunca vai conseguir logar
+    }
 
     @Override
     public void setAuthenticated(boolean isAuthenticated) throws IllegalArgumentException {
