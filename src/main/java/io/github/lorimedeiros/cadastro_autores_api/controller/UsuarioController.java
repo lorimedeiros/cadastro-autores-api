@@ -4,6 +4,7 @@ import io.github.lorimedeiros.cadastro_autores_api.controller.dto.UsuarioDTO;
 import io.github.lorimedeiros.cadastro_autores_api.controller.mappers.UsuarioMapper;
 import io.github.lorimedeiros.cadastro_autores_api.model.Usuario;
 import io.github.lorimedeiros.cadastro_autores_api.service.UsuarioService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,7 @@ public class UsuarioController {
     private final UsuarioMapper mapper;
 
     @PostMapping
-    public void salvar(@RequestBody UsuarioDTO dto){
+    public void salvar(@RequestBody @Valid UsuarioDTO dto){
         var usuario = mapper.toEntity(dto);
         service.salvar(usuario);
     }

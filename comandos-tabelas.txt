@@ -10,7 +10,7 @@ CREATE TABLE Autor(
 	CONSTRAINT pk_Autor PRIMARY KEY(id)
 );
 
-SELECT * FROM Autor
+SELECT * FROM Autor;
 
 CREATE TABLE Livro(
 	id uuid not null,
@@ -31,13 +31,20 @@ CREATE TABLE Livro(
 	CONSTRAINT ck_Livro_Preco CHECK(preco > 0)
 );
 
-SELECT * FROM Livro
+SELECT * FROM Livro;
 
 CREATE TABLE Usuario(
     id uuid not null,
     login varchar(20) not null,
-    senha varchar(300) not null,   //300 pois o codificador vai transformar a senha em algo enorme
-    roles varchar[],               //assim se declara uma array
+    senha varchar(300) not null,
+    email varchar(150) not null,
+    roles varchar[],
 
     CONSTRAINT pk_Usuario PRIMARY KEY(id)
 );
+
+ALTER TABLE Usuario ADD COLUMN email varchar(150) not null;
+//Essa seria uma opção, se não existisse o not null OU se não existissem usuários já criados na tabela. Pois esse not null conflita nos usuários já existentes, pois eles não contém email.
+//Dito isso, a solução é um DROP TABLE acompanhada do remake da tabela.
+
+SELECT * FROM Usuario;
