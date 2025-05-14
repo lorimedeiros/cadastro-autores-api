@@ -43,8 +43,4 @@ CREATE TABLE Usuario(
     CONSTRAINT pk_Usuario PRIMARY KEY(id)
 );
 
-ALTER TABLE Usuario ADD COLUMN email varchar(150) not null;
-//Essa seria uma opção, se não existisse o not null OU se não existissem usuários já criados na tabela. Pois esse not null conflita nos usuários já existentes, pois eles não contém email.
-//Dito isso, a solução é um DROP TABLE acompanhada do remake da tabela.
-
 SELECT * FROM Usuario;

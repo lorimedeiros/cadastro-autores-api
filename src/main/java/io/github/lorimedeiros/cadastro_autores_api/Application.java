@@ -13,11 +13,11 @@ public class Application {
 	}
 
 	// Transformação do usuário que vem do google em tipo CustomAuthentication
-	// 1º : Adição do campo email.
-	// 1 -> Atualida a tabela 'Usuario' do banco de dados. (script alterando em 'comandos-tabelas.txt'
-	// 2 -> Adicionado o atributo email no model de usuario
-	// 3 -> Adicionado o atributo email no dto de usuario
-	// 4 -> Adição do @Valid no método salvar no controller de usuario, para que as validações do dto funcionem
-	// OBS: se ocorrer erro inesperado dar um clean/install
+	// 2º : Implementação da estratégia de recepção de usuário autenticado do google e transformação do mesmo em CustomAuthentication
+	// 1 -> Iniciação da onfiguração manual do oauth2 no securityFilterChain de SecurityConfiguration
+	// 2 -> Implementação da classe LoginSocialSucessHandler para uso na configuração manual do filterchain
+	// 3 -> Adicionado o sucessHandler no filterchain
+	// 4 -> Adição do método obterPorEmail no usuario service
+	// 5 -> implementação do findByEmail no repository de usuario
 
 }
