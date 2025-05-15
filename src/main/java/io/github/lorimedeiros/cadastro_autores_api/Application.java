@@ -12,14 +12,16 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-	/*
-	   Da forma atual, a aplicação apenas loga por google se já houver um usuário cadastrado anteriormente.
-	   Ou seja, cadastrado no postman com o mesmo email google que logamos quando clicamos no botão google.
-	   Isso vai ser resolvido nessa versão.
-	*/
-	// 1 -> Mudanças realizadas no LoginSocialSucessHandler
-	// OBS: com isso podemos até logar via formulario preenchendo campos de login e senha
-	// (após logar a primeira vez com o google, claro, para que ele possa criar o usuario)
-	// usuario sendo tudo antes do @ e senha sendo a senha padrao 666
+	// Usando variáveis de ambiente na applicação
+	// 1 -> modificações feitas no yml (referenciação das variáveis de ambiente)
+	// 2 -> Na IDE, na barra de opções superior, temos a opção 'Run' > 'Debug Configurations'
+	// 3 -> Selecionar o icone +, tipo 'Application'
+	// 4 -> Name : Application; java : VersãoUtilizadaNoProjeto; Main : faça o caminho io.github...Application
+	// 5 -> Neste ponto já será notória a caixinha 'environment variables', apertar no botão da extrema direita da caixa
+	// 6 -> Criar as 2 variáveis do yml (GOOGLE_CLIENT_ID e GOOGLE_CLIENT_SECRET)
+	// 7 -> Dar a elas os valores dessas chaves
+
+	// claro que eu apaguei o projeto no google cloud
+	// desvantagem: agora, toda vez que for abrir o projeto no intellij terá que colocar novamente aquelas variáveis de ambiente
 
 }

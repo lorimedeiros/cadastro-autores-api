@@ -50,6 +50,7 @@ User 1:
 {
     "login" : "gerente",
     "senha" : "321",
+    "email" : "",
     "roles" : [
         "GERENTE"
         ]
@@ -59,6 +60,7 @@ User 2:
 {
     "login" : "operador",
     "senha" : "123",
+    "email" : "",
     "roles" : [
         "OPERADOR"
         ]
