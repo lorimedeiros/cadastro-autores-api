@@ -12,16 +12,35 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-	// Usando variáveis de ambiente na applicação
-	// 1 -> modificações feitas no yml (referenciação das variáveis de ambiente)
-	// 2 -> Na IDE, na barra de opções superior, temos a opção 'Run' > 'Debug Configurations'
-	// 3 -> Selecionar o icone +, tipo 'Application'
-	// 4 -> Name : Application; java : VersãoUtilizadaNoProjeto; Main : faça o caminho io.github...Application
-	// 5 -> Neste ponto já será notória a caixinha 'environment variables', apertar no botão da extrema direita da caixa
-	// 6 -> Criar as 2 variáveis do yml (GOOGLE_CLIENT_ID e GOOGLE_CLIENT_SECRET)
-	// 7 -> Dar a elas os valores dessas chaves
+	/*
+	O que é oauth2?
+	Se trata de um protocolo de autorização que permite que aplicativos acessem recursos de um usuário
+	em outros serviços, sem que o usuário precise compartilhar suas credenciais.
+	Em vez disso (credenciais) o oauth vai usar os tokens de acesso.
 
-	// claro que eu apaguei o projeto no google cloud
-	// desvantagem: agora, toda vez que for abrir o projeto no intellij terá que colocar novamente aquelas variáveis de ambiente
+	Como funciona?
+	Ao invés do usuário estar sempre se autenticando (como é o caso da autenticação basic),
+	o usuário se autentica apenas uma vez e então recebe um token, token este que contém uma duração.
+	Como um tempo de Sessão, tempo que poderá usar para fazer requisições.
+
+	Conceitos:
+	- Authorization Server: Guarda a base de dados de usuário. Autentica e identifica o usuário e o client.
+
+	- Resource Server: Onde se encontra a API, de onde vem os dados que a aplicação client vai acessar.
+
+	- Usuário: Quem está acessando o sistema.
+
+	- Client: Sistema registrado no Authorization Service
+
+	Fluxo:
+	Usuário -> Client -> Resource Server
+	- Usuário, através do client, acessa o authorization server (sem autenticação)
+
+	Usuário -> Client -> Authorization Server -> Resource Server
+	- Usuário vai tentar acessar o authorization server, se precisar se autenticar, o client vai pedir
+	  ao authorization server para autenticar esse usuário. Se o usuário conseguir se autenticar,
+	  o authorization server vai emitir um token para o client e o client vai conseguir acessar os
+	  dados do Resource Server.
+	*/
 
 }
