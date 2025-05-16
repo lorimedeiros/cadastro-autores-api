@@ -13,34 +13,39 @@ public class Application {
 	}
 
 	/*
-	O que é oauth2?
-	Se trata de um protocolo de autorização que permite que aplicativos acessem recursos de um usuário
-	em outros serviços, sem que o usuário precise compartilhar suas credenciais.
-	Em vez disso (credenciais) o oauth vai usar os tokens de acesso.
+	Grant Types (ou... fluxo de autenticação(Authentication Flows)):
 
-	Como funciona?
-	Ao invés do usuário estar sempre se autenticando (como é o caso da autenticação basic),
-	o usuário se autentica apenas uma vez e então recebe um token, token este que contém uma duração.
-	Como um tempo de Sessão, tempo que poderá usar para fazer requisições.
+	- Password Flow (Deprecated - Inseguro):
+	  * Surgiu no OAuth1, no OAuth2 ficou inseguro
+	  * Funcionamento:
+	  	- Usuário acessa o sistema (client), e nesse exato passo está o problema, o usuário
+	  	  digita as credenciais no próprio client. Depois o client solicita o token ao
+	  	  authorization server, que vai emitir o token e possibilitar o cliente realizar
+	  	  requisições para o resource server.
+	  	- Autenticações como a do goole (login social), por exemplo, não são digitados login e
+	  	  senha na própria aplicação, mas sim no authorization server do google.
+		- O grande problema no Password Flow é que o client vai conhecer seu login e senha
+		  e ele pode desviar/salvar em alguma base de dados.
 
-	Conceitos:
-	- Authorization Server: Guarda a base de dados de usuário. Autentica e identifica o usuário e o client.
+	- Authorization Code (Um dos mais seguros (e recomendados) existentes):
+	  * Funcionamento:
+	  	- PASSO 1:
+	  	  Usuário acessa o sistema/client, o client encaminha para o authorization server,
+	  	  o usuário é autenticado, estando autenticado ele irá emitir o código de autorização.
+	  	  OBS: Código de autorização != Token
+	  	  OBS2: Esse é o mesmo fluxo que o google usa
+	  	- PASSO 2:
+	  	  Retorna essa autorização para o client, client AGORA solicita token ao authorization server
+	  	  com seu código de autorização, authorization server emite Token e passa para o client que
+	  	  agora, tendo o token, pode realizar requisições para o resource server.
 
-	- Resource Server: Onde se encontra a API, de onde vem os dados que a aplicação client vai acessar.
+	- Client Credentials:
+	  * Comunicação entre API's ou Sistemas
+	  * Não existe usuário aqui (por se tratar de API's)
+	    - Client requisita token para o authorization server (passando client id e client secred)
+	      authorization server emite token com scopes (scopes são tipo as permissões) e manda
+	      para o client, por fim o client pode realizar as requisições.
 
-	- Usuário: Quem está acessando o sistema.
-
-	- Client: Sistema registrado no Authorization Service
-
-	Fluxo:
-	Usuário -> Client -> Resource Server
-	- Usuário, através do client, acessa o authorization server (sem autenticação)
-
-	Usuário -> Client -> Authorization Server -> Resource Server
-	- Usuário vai tentar acessar o authorization server, se precisar se autenticar, o client vai pedir
-	  ao authorization server para autenticar esse usuário. Se o usuário conseguir se autenticar,
-	  o authorization server vai emitir um token para o client e o client vai conseguir acessar os
-	  dados do Resource Server.
 	*/
 
 }
