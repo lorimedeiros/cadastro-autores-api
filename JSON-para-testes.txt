@@ -65,3 +65,12 @@ User 2:
         "OPERADOR"
         ]
 }
+
+CLIENTS:
+Client 1:
+{
+    "clientId" : "meu-client",
+    "clientSecret" : "client-secret",
+    "redirectURI" : "http://localhost:8080/authorized",
+    "scope" : "GERENTE"
+}
