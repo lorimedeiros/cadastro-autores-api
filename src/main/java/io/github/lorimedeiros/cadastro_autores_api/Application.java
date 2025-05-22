@@ -13,9 +13,8 @@ public class Application {
 	}
 
 	/*
-	1 -> Criação da classe CustomRegisteredClientRepository no pacote security
-
-	Não é necessario colocar no filterchain, o proprio spring já procura por aquele component
+	1 -> Criação do AuthorizationServerConfiguration no pacote config
+	2 -> Atualizações no CustomRegisteredClientRepository
 	*/
 
 }

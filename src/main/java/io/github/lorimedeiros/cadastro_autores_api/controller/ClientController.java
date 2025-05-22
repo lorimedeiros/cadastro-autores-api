@@ -15,7 +15,7 @@ public class ClientController {
     private final ClientService service;
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED) //isso faz com que não seja necessário um retorno tipo ResponseEntity
+    @ResponseStatus(HttpStatus.CREATED)
     @PreAuthorize("hasRole('GERENTE')")
     public void salvar(@RequestBody Client client){
         service.salvar(client);
