@@ -13,7 +13,7 @@ public class Application {
 	}
 
 	/*
-	1 -> **Acho** que o problema com o método depreciado foi resolvido
+	1 -> configurações no AuthorizationServerConfiguration
 	*/
 
 }
