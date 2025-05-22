@@ -13,8 +13,7 @@ public class Application {
 	}
 
 	/*
-	1 -> habilitado o oauth2ResourceServer em Security Configuration
-	2 -> configurado o scope do token em jwtAuthenticationConverter
+	1 -> **Acho** que o problema com o método depreciado foi resolvido
 	*/
 
 }
