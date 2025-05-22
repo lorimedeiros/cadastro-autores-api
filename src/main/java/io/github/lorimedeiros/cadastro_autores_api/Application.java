@@ -13,10 +13,8 @@ public class Application {
 	}
 
 	/*
-	1 -> iniciada a configuração do Authorization Server na classe AuthorizationServerConfiguration, do pacote config.
-	2 -> Criação do método authServerSecurityFilterChain e o definindo como principal por meio da anotação @Order
-
-	OBS: sim, alguns métodos estão @Deprecated
+	1 -> habilitado o oauth2ResourceServer em Security Configuration
+	2 -> configurado o scope do token em jwtAuthenticationConverter
 	*/
 
 }
