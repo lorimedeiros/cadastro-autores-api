@@ -13,8 +13,10 @@ public class Application {
 	}
 
 	/*
-	1 -> Criação do AuthorizationServerConfiguration no pacote config
-	2 -> Atualizações no CustomRegisteredClientRepository
+	1 -> iniciada a configuração do Authorization Server na classe AuthorizationServerConfiguration, do pacote config.
+	2 -> Criação do método authServerSecurityFilterChain e o definindo como principal por meio da anotação @Order
+
+	OBS: sim, alguns métodos estão @Deprecated
 	*/
 
 }
