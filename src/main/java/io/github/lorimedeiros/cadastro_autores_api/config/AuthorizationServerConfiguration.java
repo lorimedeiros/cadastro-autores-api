@@ -50,13 +50,6 @@ public class AuthorizationServerConfiguration {
     }
 
     @Bean
-    public AuthorizationServerSettings authorizationServerSettings() {
-        return AuthorizationServerSettings.builder()
-                .issuer("http://localhost:8080")
-                .build();
-    }
-
-    @Bean
     public PasswordEncoder encoder(){
         return new BCryptPasswordEncoder(10);
     }
@@ -65,9 +58,7 @@ public class AuthorizationServerConfiguration {
     public TokenSettings tokenSettings(){
         return TokenSettings.builder()
                 .accessTokenFormat(OAuth2TokenFormat.SELF_CONTAINED)
-                //access_token : usado nas requisições
                 .accessTokenTimeToLive(Duration.ofMinutes(60))
-                //refresh_token : token para renovar o access_token
                 .refreshTokenTimeToLive(Duration.ofMinutes(90))
                 .build();
     }
@@ -105,6 +96,27 @@ public class AuthorizationServerConfiguration {
     @Bean
     public JwtDecoder jwtDecoder(JWKSource<SecurityContext> jwkSource){
         return OAuth2AuthorizationServerConfiguration.jwtDecoder(jwkSource);
+    }
+
+    @Bean
+    public AuthorizationServerSettings authorizationServerSettings(){
+        return AuthorizationServerSettings.builder()
+                .issuer("http://localhost:8080")
+                //obter token
+                .tokenEndpoint("/oauth2/token")
+                //para consultar status do token
+                .tokenIntrospectionEndpoint("/oauth2/introspect")
+                //revogar
+                .tokenRevocationEndpoint("/oauth2/revoke")
+                //authorization endpoint
+                .authorizationEndpoint("/oauth2/authorize")
+                //informações do usuário OPEN ID CONNECT
+                .oidcUserInfoEndpoint("/oauth2/userinfo")
+                //obter chave pública para verificar assinatura do token
+                .jwkSetEndpoint("/oauth2/jwks")
+                //logout
+                .oidcLogoutEndpoint("/oauth2/logout")
+                .build();
     }
 
 }

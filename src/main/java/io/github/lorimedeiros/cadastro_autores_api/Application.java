@@ -13,8 +13,7 @@ public class Application {
 	}
 
 	/*
-	1 -> Refresh token habilitado em CustomRegisteredClientRepository
-	2 -> ativação do tempo do refresh token em AuthorizationServerConfiguration
+	1 -> conhecendo a customização de endpoints do authorization server
 	*/
 
 }
