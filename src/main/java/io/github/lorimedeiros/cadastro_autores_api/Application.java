@@ -13,18 +13,13 @@ public class Application {
 	}
 
 	/*
-	Como usar o grant type authorization token (token que funciona como o google, single sign-on)
-	1 -> criada a requisição nomeada 'Authorization Code - Postman' no folder OAuth2
-	2 -> na aba Authorization, selecionar OAuth 2.0 e ir em 'Configure New Token'
-	3 -> Grant type : Authorization Code
-	4 -> Callback URL : http://localhost:8080/authorized (o mesmo conteudo da coluna redirect_uri dp banco de dados)
-	5 -> Auth URL : http://localhost:8080/oauth2/token
-	6 -> Access Token URL : http://localhost:8080/oauth2/token
-	7 -> Client ID e Client Secret são as msm do client salvo no banco de dados, scope deixa em branco
-	8 -> Client Authentication : send as basic auth header
-	9 -> dar um clear cookies para limpar sessões anteriores, dar um ctrl + s, dar um 'get new acess token'
-	10 -> o proprio postman vai abrir uma aba para o form de login, nisso já é possivel logar com algum usuario
-	11 -> apos o login bem sucedido é possivel pegar o token gerado
+	Acessar via browser:
+	http://localhost:8080/oauth2/authorize?response_type=code&client_id=meu-client&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fauthorized
+
+	Criada requisição 'Authorization Code - Manual'
+	no parâmetro 'code' do body é colado o code gerado no link acima
+
+	1 -> novo caminho adicionado no LoginViewController
 	*/
 
 }
