@@ -13,13 +13,8 @@ public class Application {
 	}
 
 	/*
-	Acessar via browser:
-	http://localhost:8080/oauth2/authorize?response_type=code&client_id=meu-client&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fauthorized
-
-	Criada requisição 'Authorization Code - Manual'
-	no parâmetro 'code' do body é colado o code gerado no link acima
-
-	1 -> novo caminho adicionado no LoginViewController
+	1 -> Refresh token habilitado em CustomRegisteredClientRepository
+	2 -> ativação do tempo do refresh token em AuthorizationServerConfiguration
 	*/
 
 }
