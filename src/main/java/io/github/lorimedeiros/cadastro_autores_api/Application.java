@@ -12,8 +12,4 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-	/*
-	1 -> conhecendo a customização de endpoints do authorization server
-	*/
-
 }

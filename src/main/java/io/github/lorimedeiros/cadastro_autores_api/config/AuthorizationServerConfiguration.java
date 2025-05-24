@@ -102,19 +102,12 @@ public class AuthorizationServerConfiguration {
     public AuthorizationServerSettings authorizationServerSettings(){
         return AuthorizationServerSettings.builder()
                 .issuer("http://localhost:8080")
-                //obter token
                 .tokenEndpoint("/oauth2/token")
-                //para consultar status do token
                 .tokenIntrospectionEndpoint("/oauth2/introspect")
-                //revogar
                 .tokenRevocationEndpoint("/oauth2/revoke")
-                //authorization endpoint
                 .authorizationEndpoint("/oauth2/authorize")
-                //informações do usuário OPEN ID CONNECT
                 .oidcUserInfoEndpoint("/oauth2/userinfo")
-                //obter chave pública para verificar assinatura do token
                 .jwkSetEndpoint("/oauth2/jwks")
-                //logout
                 .oidcLogoutEndpoint("/oauth2/logout")
                 .build();
     }
