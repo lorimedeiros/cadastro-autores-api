@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -24,6 +25,7 @@ import java.util.UUID;
 @RequestMapping("/livros")
 @RequiredArgsConstructor
 @Tag(name = "Livros")
+@Slf4j
 public class LivroController implements GenericController {
 
     private final LivroService service;
@@ -38,6 +40,8 @@ public class LivroController implements GenericController {
             @ApiResponse(responseCode = "409", description = "Livro já cadastrado.")
     })
     public ResponseEntity<Void> salvar(@RequestBody @Valid CadastroLivroDTO dto) {
+
+        log.info("Cadastrando novo livro: {}", dto.titulo());
 
         Livro livro = mapper.toEntity(dto);
         service.salvar(livro);
@@ -69,6 +73,9 @@ public class LivroController implements GenericController {
             @ApiResponse(responseCode = "404", description = "Livro não encontrado.")
     })
     public ResponseEntity<Object> deletar(@PathVariable("id") String id){
+
+        log.info("Deletando livro de ID: {}", id);
+
         return service.obterPorId(UUID.fromString(id))
                 .map(livro -> {
                     service.deletar(livro);

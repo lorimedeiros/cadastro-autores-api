@@ -10,12 +10,14 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/usuarios")
 @RequiredArgsConstructor
 @Tag(name = "Usuários")
+@Slf4j
 public class UsuarioController {
 
     private final UsuarioService service;
@@ -29,6 +31,9 @@ public class UsuarioController {
             @ApiResponse(responseCode = "409", description = "Usuário já cadastrado.")
     })
     public void salvar(@RequestBody @Valid UsuarioDTO dto){
+
+        log.info("Cadastrando novo usuário: {} com roles: {}", dto.login(), dto.roles());
+
         var usuario = mapper.toEntity(dto);
         service.salvar(usuario);
     }
@@ -40,6 +45,7 @@ public class UsuarioController {
             @ApiResponse(responseCode = "404", description = "Usuário não encontrado.")
     })
     public void deletar(@PathVariable("login") String login){
+        log.info("Deletando usuario de login: {}", login);
         Usuario usuario = service.obterPorLogin(login);
         service.deletar(usuario);
     }

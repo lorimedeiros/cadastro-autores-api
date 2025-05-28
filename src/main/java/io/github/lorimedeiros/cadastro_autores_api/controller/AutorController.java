@@ -42,6 +42,8 @@ public class AutorController implements GenericController{
     })
     public ResponseEntity<Void> salvar(@RequestBody @Valid AutorDTO dto, Authentication auth){
 
+        log.info("Cadastrando novo autor: {}", dto.nome());
+
         Autor autor = mapper.toEntity(dto);
         service.salvar(autor);
 
@@ -80,6 +82,8 @@ public class AutorController implements GenericController{
     })
     public ResponseEntity<Void> deletar(@PathVariable("id") String id){
 
+        log.info("Deletando autor de ID: {}", id);
+
         var idAutor = UUID.fromString(id);
         Optional<Autor> autorOptional = service.obterPorId(idAutor);
 
@@ -101,13 +105,6 @@ public class AutorController implements GenericController{
     public ResponseEntity<List<AutorDTO>> pesquisar(
             @RequestParam(value = "nome", required = false) String nome,
             @RequestParam(value = "nacionalidade", required = false) String nacionalidaade){
-
-        //assim se adiciona o log do level que quiser (aqui temos exemplo de todos)
-        log.trace("Pesquisa autores");
-        log.debug("Pesquisa autores");
-        log.info("Pesquisa autores");
-        log.warn("Pesquisa autores");
-        log.error("Pesquisa autores");
 
         List<Autor> resultado = service.pesquisaByExample(nome, nacionalidaade);
         List<AutorDTO> lista = resultado
