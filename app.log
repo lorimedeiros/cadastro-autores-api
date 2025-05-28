@@ -35,3 +35,8 @@
 2025-05-28T19:47:53.335-03:00  WARN 1600 --- [cadastro-autores-api] [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Deferred [Mvc [pattern='/webjars/**'], Ant [pattern='/webjars/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
 2025-05-28T19:47:54.282-03:00  INFO 1600 --- [cadastro-autores-api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
 2025-05-28T19:47:54.301-03:00  INFO 1600 --- [cadastro-autores-api] [main] i.g.l.cadastro_autores_api.Application   : Started Application in 17.488 seconds (process running for 20.121)
+2025-05-28T19:50:27.490-03:00  INFO 1600 --- [cadastro-autores-api] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-28T19:50:27.505-03:00  INFO 1600 --- [cadastro-autores-api] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-28T19:50:27.521-03:00  INFO 1600 --- [cadastro-autores-api] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-28T19:50:27.528-03:00  INFO 1600 --- [cadastro-autores-api] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : livreria-db-pool - Shutdown initiated...
+2025-05-28T19:50:27.534-03:00  INFO 1600 --- [cadastro-autores-api] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : livreria-db-pool - Shutdown completed.
