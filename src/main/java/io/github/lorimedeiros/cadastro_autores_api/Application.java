@@ -13,25 +13,11 @@ public class Application {
 	}
 
 	/*
-	Removendo erros gerais que o handler faz aparecer nos métodos do swagger
-	1 -> alterações no application.yml
-
-
-	Adicionando a autenticação com token no swagger
-	1 -> remoção de authentication basic do filter chain, na classe SecurityConfiguration
-	2 -> adição do botão de autenticação no OpenApiConfiguration bem como algumas configurações de segurança
-	no swagger
-	1 -> ao tentar dar qualquer comando receberemos um unauthorized por não estarmos autenticados, porém agora temos um botão 'authorize' no extremo direito do lado de servers
-	2 -> click neste botão e abrirá a janela que solicita um token
-	3 -> abrimos o postman, pacote OAuth2, request 'Authorization Code - Postman'
-	4 -> (levando em consideração que já esteja tudo pré configurado) clear cookies + get new acess token + proced
-	5 -> copiamos o acess token, colamos e confirmamos no swagger, dê um close nessa janelinha
-	Feito!
-
-
-	E se eu quiser trazer o swagger (já existente) de um outro projeto
-	1 -> no postman, no mesmo nível de my workspace, click em import,
-	2 -> cole a url do swagger no espaço url dessa janela de import e confirme com um click em import
+	1 -> gerado/configurado arquivo de log, no applcation.yml
+	     a) mas o que e onde aparece esse arquivo de log?
+	     	1º assim que rodar o pojeto o arquivo 'app.log' irá aparecer na pasta raiz do projeto, no mesmo nível
+	     	   que o .md e o pom.xml
+	     	2º seu conteúdo é aquilo que nos é mostrado np console da IDE ao rodarmos o projeto
 	*/
 
 }
