@@ -13,11 +13,12 @@ public class Application {
 	}
 
 	/*
-	Adicionando mensagens log (em locais estratégicos) para monitoramento da aplicação:
-	1 -> adicionados logs estratégicos em AutorController (salvar e deletar) - info
-	2 -> adicionados logs estratégicos em ClientController (salvar) - info
-	3 -> adicionados logs estratégicos em GlobalExceptionHandler - error
-	...mais adições repetitivas
+	Customizando e adicionando cores nos logs:
+	1 -> No application.yml, no mesmo nível de application (só isso já habilita cores, mas iremos customizar)
+		   output:
+    	     ansi:
+      		   enabled: ALWAYS
+    2 -> em 'logging: pattern: console:' está a string de configuração de cores, formato da data foi mudado para o brasileiro
 	*/
 
 }
