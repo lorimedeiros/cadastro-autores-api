@@ -1,8 +1,6 @@
 spring:
   application:
     name: cadastro-autores-api
-  profiles:
-    active: production
   output:
     ansi:
       enabled: ALWAYS
@@ -50,3 +48,23 @@ management:
 
 springdoc:
   override-with-generic-response: false
+
+
+# production
+---
+spring:
+  config:
+    activate:
+      on-profile: production
+  jpa:
+    show-sql: false
+
+
+# homologacao / teste
+---
+spring:
+  config:
+    activate:
+      on-profile: homologacao
+  jpa:
+    show-sql: false
