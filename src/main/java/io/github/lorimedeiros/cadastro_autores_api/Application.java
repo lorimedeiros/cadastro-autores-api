@@ -13,18 +13,13 @@ public class Application {
 	}
 
 	/*
-	Utilizando Actuator para obter métricas da aplicação (observalidade)
-	  - Monitoramento é um ponto muito importante no pós deploy
-	    são usadas ferramentas como Prometheus e Grafana para a observalidade.
-	    O Actuator pode prover informações para essas ferramentas.
-
-	1 -> dependencia do actuator adicionada ao pom.xml
-	2 -> configurando para a url do actuator ser ignorada pelo spring security em securityConfiguration
-	3 -> acessando http://localhost:8080/actuator vemos a mensagem que indica que o actuator está ativado
-		 podemos ver também os endpoints habilitados
-	4 -> acessando http://localhost:8080/actuator/health vemos a saúde da aplicação
-	5 -> ativados mais endpoints em application.yml, acessando novamente o endpoint do actuator vemos os novos endpoints
-	6 -> acessando http://localhost:8080/actuator/metrics vemos as métricas
+	Preparando ambiente para produção através de profiles do Spring
+	FORMA 1 (no .yml)
+	1 -> criando yml do ambiente de produção
+	2 -> mudando yml principal para rodar aplicação no perfil production (com 'profiles:active:')
+		 no proprio log, ao rodar a aplicação (3ª linha mais ou menos), são informados quantos e quais perfis estão ativos
+		 e isso já possibilita que a aplicação carregue as propriedades de produção (do yml 'application-production'
+	3 -> foi criado também o 'application-homologacao' que é uma cópia do yml principal da aplicação
 	*/
 
 }

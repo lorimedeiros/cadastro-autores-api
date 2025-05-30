@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: cadastro-autores-api-production
+  jpa:
+    show-sql: false
