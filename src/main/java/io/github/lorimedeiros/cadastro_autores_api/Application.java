@@ -13,26 +13,20 @@ public class Application {
 	}
 
 	/*
-	Preparando ambiente para produção através de profiles do Spring
-	FORMA 2 (cariáveis de ambiente, sem necessidade de arquivos adicionais)
-	1 -> ao fim das linhas da configuração principal do yml foram dados 3 '-'
-		 isso representa a separação entre um ambiente e outro
-		 obs: o comentário é opcional, coloquei para eu não me perder
-	2 -> nisso, podemos mudar de perfil no 'profiles:active:' da mesma forma, o nome dos perfís são definidos
-		 nas configurações 'spring:config:activate:on-profile:'
+	Utilizando variáveis de ambiente no lugar de profiles
+	1 -> no yml, foi trocada a 'datasource:url:' pela variável de ambiente '${DATASOURCE_URL}'
+		 dentro das chaves, após os dois pontos (:) está o valor padrão, é como dizer:
+		 "se não encontrar tal variável de ambiente, use..."
+		 com as demais foi feito o mesmo
+	2 -> na classe 'DatabaseConfiguration' do pacote 'config', foi posto o log para que seja informada a url do banco
 
-	obs: o 'spring:config:activate:on-profile:' pode receber mais de um ambiente separados por virgula
-
-	3 -> finalmente a forma variável de ambiente:
-		 a) comentamos ou removemos a parte 'profiles:active: production'
-		 b) vamos na barrinha da IDE intellij, no mesmo nível que o botão run e procuramos pelo botão Application
-		    é o botão que está selecionando a classe application que tem o main da aplicação, click no botão
-		 c) do lado direito de Application click no (> ou :), em seguida 'edit'
-		 d) na janela que abrirá vamos em 'enviroment variables' e no botão 'edit enviroment variables'
-		 e) na nova janela que abrirá iremos em 'user enviroment variables' e click no '+'
-		 f) criamos a variable com name: SPRING_PROFILES_ACTIVE e value: production e damos um ok e apply
-
-		 SPRING_PROFILES_ACTIVE=production
+	OBS: uma observação, se não quiser usar nenhum perfil específico de yml, colocar default, isso irá pegar o principal
+	OBS2: se der um 'ctrl + F' no log, é possível buscar pela str digitada
+	OBS3: para definir algum outro valor na variável de ambiente, que não seja aquele padrão após o ':'
+		  é só ir nas configurações de variável de ambiente da IDE e colocar name como sendo o que vem antes
+		  dos ':' e o value sendo o outro valor que queremos atribuir.
+		  Dessa forma, o valor padrão (que vem depois do :) é ignorado, dando prioridade ao atribuído nas
+		  configurações de variável de ambiente da IDE.
 	*/
 
 }
