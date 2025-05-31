@@ -50,7 +50,7 @@ CREATE TABLE client(
 	client_id varchar(150) not null,
 	client_secret varchar(400) not null,
 	redirect_uri varchar(200) not null,
-	scope varchar(50),                 //scope é uma permissão para um serviço acessar ou não alguma parte da API.
+	scope varchar(50),
 
     CONSTRAINT pk_Client PRIMARY KEY(id)
 );
