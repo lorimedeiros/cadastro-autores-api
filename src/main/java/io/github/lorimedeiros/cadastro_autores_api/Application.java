@@ -13,43 +13,26 @@ public class Application {
 	}
 
 	/*
-	Preparando o banco de dados de produção no docker
-	1 -> abrimo o cmd
-	2 -> colamos:
-	 	 docker run --name livrariadb-prod -d -p 5433:5432 -e POSTGRES_PASSWORD=postgresprod -e POSTGRES_USER=postgresprod -e POSTGRES_DB=livraria --network livraria-network postgres:17.4
-		 verificamos se está tudo ok com
-		 docker ps
-	3 -> agora temos que registrar um novo servidor
-		 a) acessamos: http://localhost:15432
-		 b) logamos normal com as mesmas informações do db principal
-		 c) criamos novo servidor: servers (botão direito) > register > server...
-		 d) na nova janela que abrirá, na aba general, name: producao
-		 e) aba connection: Host name/address: livrariadb-prod (nome do container)
-		 					port: 5432 (estão na mesma network então podem estar na mesma port)
-		 					maintenace database: livraria (nome que definimos no --name)
-		 					username: postgresprod
-		 					password: postgresprod
-		 f) damos um save e já podemos ver 'producao' no nível abaixo de servers (na aba de navegação esquerda)
-		 g) não tem nenhuma table, então copiamos os comandos de 'comandos-tabelas.txt' e rodamos na query tool
-		 OBS: na parte '-p 5433:5432', a segunda parte (5432) nunca muda, pois é a porta do container
-	4 -> feito isso, vamos dar insert em um usuário (pelo próprio querry tool) para que seja possível acessar
-		 a) antes vamos em: https://bcrypt-generator.com/
-		 	para encriptar a senha, pois nossa aplicação só deve aceitar assim (usei senha: admin123)
-		 b) agora teremos que habilitar uma função no postgre com o comando:
-		 	CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-		 c) agora o insert:
-		 	insert into usuario
-			(id, login, senha, email, roles)
-			values
-			(uuid_generate_v4(), 'gerente', '$2a$12$TsSzIh4qwdIQkAssCRkHq.t/WK0.Lg1isMVgiTTPSvJY8cSb8re8.', 'gerente@email.com', '{GERENTE}');
-	5 -> agora daremos insert em um client
-		 a) secret também deve ser encriptado (usei secret: secret-production)
-		 B: INSERT de client:
-		 	insert into client
-			(id, client_id, client_secret, redirect_uri, scope)
-			values
-			(uuid_generate_v4(), 'client-production', '$2a$12$y6oaBL/iGR/it83UP6yxgujsH3O.V309P4XShtlUy91o1mXkPraD6', 'http://localhost:8080/authorized', 'GERENTE');
-	6 ->
+	Testando banco de produção com a aplicação
+	1 -> vamos nas variáveis de ambiente da IDE e criamos as variáveis:
+		 a) DATASOURCE_USERNAME  postgresprod
+			DATASOURCE_PASSWORD  postgresprod
+			DATASOURCE_URL       jdbc:postgresql://localhost:5433/livraria
+		 b) definimos tambem a variável de ambiente 'SPRING_PROFILES_ACTIVE' como valor sendo 'default', por enquanto
+	2 -> no postman, pegaremos um token com os dados de produção:
+		 a) vamos no pacote: OAuth2 > request: Authorization Code - Postman
+		 b) na aba 'Authorization', selecionamos OAuth 2.0, é esperado que isso já esteja configurado
+		 	Client ID: client-production
+		 	Client Secret: secret-production
+		 c) damor um 'clear cookies' + 'get acess token'
+		 d) logamos com o usuario criado
+		 	login: gerente
+		 	senha: admin123
+		 e) damos proced e copiamos o acess token criado
+	3 -> agora podemos ir numa request simples como 'pesquisar' de livros
+	4 -> na authorization da request escolhemos bearer token e colamos o token criado
+		 assim sabemos se tudo está funcionando conforme os conformes (devemos receber 200 ok)
+	5 ->
 	*/
 
 }
