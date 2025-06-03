@@ -13,26 +13,31 @@ public class Application {
 	}
 
 	/*
-	Testando banco de produção com a aplicação
-	1 -> vamos nas variáveis de ambiente da IDE e criamos as variáveis:
-		 a) DATASOURCE_USERNAME  postgresprod
-			DATASOURCE_PASSWORD  postgresprod
-			DATASOURCE_URL       jdbc:postgresql://localhost:5433/livraria
-		 b) definimos tambem a variável de ambiente 'SPRING_PROFILES_ACTIVE' como valor sendo 'default', por enquanto
-	2 -> no postman, pegaremos um token com os dados de produção:
-		 a) vamos no pacote: OAuth2 > request: Authorization Code - Postman
-		 b) na aba 'Authorization', selecionamos OAuth 2.0, é esperado que isso já esteja configurado
-		 	Client ID: client-production
-		 	Client Secret: secret-production
-		 c) damor um 'clear cookies' + 'get acess token'
-		 d) logamos com o usuario criado
-		 	login: gerente
-		 	senha: admin123
-		 e) damos proced e copiamos o acess token criado
-	3 -> agora podemos ir numa request simples como 'pesquisar' de livros
-	4 -> na authorization da request escolhemos bearer token e colamos o token criado
-		 assim sabemos se tudo está funcionando conforme os conformes (devemos receber 200 ok)
-	5 ->
+	Criando um JAR da aplicação e rodando para entender o fluxo de build
+
+	DE FORMA AUTOMÁTICA:
+	1 -> vamos na aba Maven da IDE e selecionamos clean e package no pacote lifecycle
+
+	USANDO LINHA DE COMANDO (NA MÃO):
+	1 -> abre o terminal da IDE e damos o comando " ./mvnw clean package -DskipTests "
+		 a) ./mvnw clean package : empacota a aplicação pra produção (builda e empacota gerando arquivo .jar)
+		 b) -DskipTests          : equivalente a desabilitar os testes na aba maven
+
+	2 -> com isso já podemos ver e acessar o arquivo jar. Na pasta raiz do projeto, no mesmo nível que src
+		 temos a pasta target, dentro dela temos nosso .jar (não o .original)
+
+	3 -> CONCERTADO O NOME DA DATABASE NO .YML
+
+	DE FORMA AUTOMÁTICA:
+	4 -> click com botão direito no .jar e damos um run
+
+	USANDO LINHA DE COMANDO (NA MÃO):
+	4 -> no terminal: java -jar .\target\cadastro-autores-api-0.0.1-SNAPSHOT.jar
+	     a) selecionando a pasta (com click) na aba de navegação de pastas (na esquerda da IDE),
+	     	digitando até '.\target\' e dando um tab, acontece o auto-complete
+
+	OBS: caso haja falha em rodar o .jar, tentar novamente o mesmo comando no terminal
+
 	*/
 
 }
