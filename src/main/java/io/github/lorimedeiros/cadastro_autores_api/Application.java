@@ -13,26 +13,16 @@ public class Application {
 	}
 
 	/*
-	OBS1: foi resolvido um problema no dockerfile (no entrypoint
-	OBS2: outro abacaxi, dessa vez eram as variáveis do google, mesmo não sendo usadas, elas precisam receber algum valor
+	Enviando a imagem da nossa aplicação para o dockerhub
+	https://hub.docker.com
+	1 -> entro com github
+	2 -> no terminal da IDE:
+		 docker tag lorimedeiros/cadastro-autores-api:prod lorimedeiros/cadastro-autores-api:latest
+		 docker login    #isso vai ser automático se já estiver logado no docker pelo aplicativo
+		 docker push lorimedeiros/cadastro-autores-api
 
-	Realizando deploy do container em produção
-	1 -> docker build -t lorimedeiros/cadastro-autores-api:prod .
-	2 -> docker run -d --name cadastro-autores-api-production \
-  		   -e DATASOURCE_URL="jdbc:postgresql://livrariadb-prod:5432/livraria" \
-  		   -e DATASOURCE_USERNAME="postgresprod" \
-  		   -e DATASOURCE_PASSWORD="postgresprod" \
-  		   -e SPRING_PROFILES_ACTIVE="production" \
-  		   -e TZ="America/Sao_Paulo" \
-  		   --network livraria-network \
-  		   -p 8080:8080 \
-  		   -p 9090:9090 \
-  		   lorimedeiros/cadastro-autores-api:prod
-  	3 -> docker ps
-  	4 -> docker logs cadastro-autores-api-production
-
-  	5 -> com isso já está tudo certo e a api já funciona em produção
-  		 Se quisermos desativar ela é só stopar o container e ativar novamente é só dar start
+	3 -> https://hub.docker.com/repositories/lorimedeiros
+	     agora aparece seguindo o link acima
 	*/
 
 }
