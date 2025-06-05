@@ -56,3 +56,5 @@ CREATE TABLE client(
 );
 
 SELECT * FROM client;
+
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";

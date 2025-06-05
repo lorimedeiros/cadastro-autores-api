@@ -13,27 +13,51 @@ public class Application {
 	}
 
 	/*
-	Criando a instancia do banco de dados no serviço RDS da AWS
-	1 -> acessamos o console de serviços aws (fazer login): https://sa-east-1.console.aws.amazon.com/console/home?region=sa-east-1#
-		 obs: na hora de realizar login há também uma tela de login como IAM, que são aqueles que acessam a
-		 	  aplicação de outra pessoa. Lembrar de logar como host.
-	2  -> click no icone da 'Aurora and RDS' (ou pesquisamos pelo serviço)
-	3  -> scrollamos até achar a opção 'Criar banco de dados'
-	4  -> em 'Escolher um método de criação de banco de dados' escolhemos 'criação padrão'
-	5  -> em 'Opções do mecanismo' escolhemos o 'PostgreSQL' que é o banco que estamos usando na aplicação
-	6  -> não habilitamos o filtro nem o RDS Extended Support
-	7  -> modelo definimos como o gratuito
-	8  -> configurações: nome = 'livrariaapi-database' (mas é o nome que quiser)
-	9  -> Configurações de credenciais: user = 'postgres' , senha = 'postgres'
-	10 -> Acesso público: sim (iremos acessar por fora da AWS)
-	11 -> desabilitamos o insights de monitoramento (é pago)
-	12 -> o resto deicamos no padrão
-	13 -> por fim criamos o banco de dados
-	14 -> click no nome do banco de dados para ver detalhes
+	Criando as tabelas e testando o banco da AWS
 
-	Caso deslogue e queira acessar novemente:
-	1  -> acessamos a aba do serviço RDS
-	2  -> clicamos em 'instancias de banco de dados'
+	Liberando a segurança para conexão no banco da aws:
+	1 -> na aba de 'Segurança e conexão', vamos na parte 'segurança', em seguida 'Grupos de segurança da VPC'
+	2 -> click no link (com nome default)
+	3 -> click no id do grupo de segurança
+	4 -> em regras de entrda, click em 'editar regras de entrada'
+	5 -> click em 'adicionar regra'
+	6 -> em 'tipo' selecionamos PostgreSQL, IP escolhemos a opção que está tudo zerado
+	7 -> click em 'salvar regras'
+
+	Conectando no pgadmin:
+	1 -> no pg admin, buscamos por servers na aba de navegação, click direito > register > server...
+	2 -> general    : name = aws (pgadmin)
+	3 -> na aba do nosso banco da aws buscamos o endpoint (e copiamos) na parte de segurança e conexão
+	4 -> connection : Host name/address = (link endpoint copiado) ; user = postgres ; senha = postgres
+	5 -> click em 'save'/'salvar'
+
+	Criando o banco de dados no esquema de aws:
+	1 -> na aba, expandimos 'aws', expandimos 'databases'
+	2 -> click direito em 'databases' > create > database...
+	3 -> general : name = livraria
+	4 -> damos um save
+
+	Criando as tabelas:
+	1 -> abrimo a query tool do banco recem criado
+	2 -> colamos os scripts da file txt 'comandos-tabelas' (presente nos arquivos do projeto) e rodamos
+	3 -> rodamos também a linha de código que cria extensão uuid (também está na comandos-tabelas)
+	4 -> rodamos os inserts (do arquivo JSON-para-testes)
+
+	Criando conexão com nossa aplicação:
+	1 -> acessamos as variáveis de ambiente na IDE
+	2 -> modificamos usuario e senha do banco sendo ambos 'postgres'
+	3 -> na url do banco:
+		 jdbc:postgresql://(Endpoint do banco aws):5432/livraria
+
+	OBS: lembrar de stopar o deploy no docker para desocupar a porta
+	OBS: lembrar de definir a IDE para rodar a aplicação local
+
+	Teste no postman:
+	1 -> Rodar a aplicação
+	2 -> no postman, vamos no pacote OAuth2, na requisição Authorization Code - Postman
+	3 -> damos um clear e um get new acess token
+	4 -> logamos e copiamos o token
+	5 -> realizamos alguma requisição para testar (lembrando de usar autorização bearer token)
 	*/
 
 }
