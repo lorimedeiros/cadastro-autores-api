@@ -77,11 +77,11 @@ Client 1:
 
 ## VERSÃO POSTGRESQL
 
-USUARIO:
+USUARIO (LEMBRAR DE ENCRIPTAR A SENHA):
 INSERT INTO usuario (id, login, senha, email, roles) VALUES
 (uuid_generate_v4(), 'gerente', '321', '', ARRAY['GERENTE']),
 (uuid_generate_v4(), 'operador', '123', '', ARRAY['OPERADOR']);
 
-CLIENT:
+CLIENT (LEMBRAR DE ENCRIPTAR A SENHA):
 INSERT INTO client (id, client_id, client_secret, redirect_uri, scope) VALUES
 (uuid_generate_v4(), 'meu-client', 'client-secret', 'http://localhost:8080/authorized', 'GERENTE');

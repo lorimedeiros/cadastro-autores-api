@@ -42,6 +42,7 @@ public class Application {
 	2 -> colamos os scripts da file txt 'comandos-tabelas' (presente nos arquivos do projeto) e rodamos
 	3 -> rodamos também a linha de código que cria extensão uuid (também está na comandos-tabelas)
 	4 -> rodamos os inserts (do arquivo JSON-para-testes)
+		 OBS: Lembrar de criptografar as senhas (dos usuarios) em: https://bcrypt-generator.com/
 
 	Criando conexão com nossa aplicação:
 	1 -> acessamos as variáveis de ambiente na IDE
