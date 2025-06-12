@@ -13,43 +13,38 @@ public class Application {
 	}
 
 	/*
-	Configurando a máquina na cloud com o serviço EC2 da AWS
-	1  -> buscamos pelo serviço EC2 no menu da AWS
-	2  -> buscamos pelo botão 'Executar instância' na página do EC2
-	3  -> 'Nome e tags' = livraria-server
-	4  -> 'Imagem do sistema operacional' = Amazon Linux
-	5  -> 'Par de chaves (login)' > 'Criar novo par de chaves' > nome = livraria-rsa > 'Criar par de chaves'
-	6  -> em 'Configurações de rede' selecionamos 'Selecionar grupo de segurança existente' e selecionamos o grupo default
-	7  -> vamos em 'Executar instância'
-	8  -> ao lado da mensagem verde de sucesso temos o link da instancia criada, click nele
-	9  -> click no link em 'id da instancia'
-	10 -> click em 'conectar' (localizado bem abaixo de 'resumo da instancia'
+	Realizando deploy da aplicação spring boot na AWS
 
-	OBS: ABRIR OUTRA ABA E NÃO FECHAR ESSA DE CONEXÃO
+	continuação dos comandos na maquina virtual:
+	sudo docker run --name livrariaapi -e DATASOURCE_URL=jdbc:postgresql://(endpoint rds):5432/livraria -e DATASOURCE_USERNAME=postgres -e DATASOURCE_PASSWORD=postgres -p 8080:8080 -p 9090:9090 lorimedeiros/cadastro-autores-api
+	- 'lorimedeiros/cadastro-autores-api' corresponde ao nome do repositorio do projeto no dockerhub
+	OBS: depois disso o Spring irá inicializar nesse terminal
 
-	11 -> abrimos o menu EC2 em outra aba e buscamos por 'grupos de segurança'
-	12 -> click no id do grupo de segurança
-	13 -> click em 'editar regras de entrada'
-	14 -> click em 'adicionar regra'
-	15 -> SSH - TCP - PORTA 22 - 18.228.70.32/29
-		  na pior das hipoteses procuramos manualmente o IP da nossa região em:
-		  https://ip-ranges.amazonaws.com/ip-ranges.json
-		  buscamos: "region": "sa-east-1", "service": "EC2_INSTANCE_CONNECT"
-	16 -> 'salvar regras'
-	17 -> voltamos naquela pagina de conexão e conectamos
+	ajustando segurança para acessar:
+	1 -> vamos no menu principal EC2
+	2 -> 'grupos de segurança'
+	3 -> click no IP do grupo
+	4 -> 'editar regras de entrada'
+	5 -> 'adicionar regra'
+	6 -> TCP Personalizado - TCP - 8080 - Qualquer local IPv4 - 0.0.0.0/0
+	7 -> salvar regras
 
-	18 -> daremos alguns comandos linux na máquina virtual que irá abrir
-		  sudo yum update
-		  - para atualizar o linux da maquina virtual
-		  sudo yum install docker
-		  y
-		  - para instalar o docker em nossa máquina
-		  sudo service docker start
-		  - inicia o serviço docker
-		  sudo docker ps
-		  - para testar se está funcionando
+	para acessar (via web):
+	1 -> pegamos o public IP (la na parte branca em baixo do cmd linux)
+	2 -> vamos no browser e colocamos http://(public IP):8080
+	3 -> agora podemos logar com algum de nossos usuarios (aqueles presentes no postgres)
 
-	OBS: proximo commit iniciarei o container
+	para acessar (via postman):
+	1 -> na request 'authorization code - postman' (vamos pegar o token)
+	2 -> na aba Authorization, na callback URL, alteramos para: http://(public IP):8080/authorized
+	3 -> auth url e acess token url sofrem essa mesma alteração de trecho
+
+	OBS: o passo a seguir não dará certo se nosso client estiver com a redirect URL ainda apontando para localhost
+		 devemos ajustar ela para apontar pro public IP
+
+	4 -> damos um clear cookies e get acess token, por fim copiamos o token para usar na request do proximo passo
+	5 -> agora, quando quisermos usar o ip da cloud fazemos o seguinte (exemplo com a requisição de salvar autor):
+		 http://(public IP):8080/autores
 	*/
 
 }
