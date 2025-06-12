@@ -13,52 +13,43 @@ public class Application {
 	}
 
 	/*
-	Criando as tabelas e testando o banco da AWS
+	Configurando a máquina na cloud com o serviço EC2 da AWS
+	1  -> buscamos pelo serviço EC2 no menu da AWS
+	2  -> buscamos pelo botão 'Executar instância' na página do EC2
+	3  -> 'Nome e tags' = livraria-server
+	4  -> 'Imagem do sistema operacional' = Amazon Linux
+	5  -> 'Par de chaves (login)' > 'Criar novo par de chaves' > nome = livraria-rsa > 'Criar par de chaves'
+	6  -> em 'Configurações de rede' selecionamos 'Selecionar grupo de segurança existente' e selecionamos o grupo default
+	7  -> vamos em 'Executar instância'
+	8  -> ao lado da mensagem verde de sucesso temos o link da instancia criada, click nele
+	9  -> click no link em 'id da instancia'
+	10 -> click em 'conectar' (localizado bem abaixo de 'resumo da instancia'
 
-	Liberando a segurança para conexão no banco da aws:
-	1 -> na aba de 'Segurança e conexão', vamos na parte 'segurança', em seguida 'Grupos de segurança da VPC'
-	2 -> click no link (com nome default)
-	3 -> click no id do grupo de segurança
-	4 -> em regras de entrda, click em 'editar regras de entrada'
-	5 -> click em 'adicionar regra'
-	6 -> em 'tipo' selecionamos PostgreSQL, IP escolhemos a opção que está tudo zerado
-	7 -> click em 'salvar regras'
+	OBS: ABRIR OUTRA ABA E NÃO FECHAR ESSA DE CONEXÃO
 
-	Conectando no pgadmin:
-	1 -> no pg admin, buscamos por servers na aba de navegação, click direito > register > server...
-	2 -> general    : name = aws (pgadmin)
-	3 -> na aba do nosso banco da aws buscamos o endpoint (e copiamos) na parte de segurança e conexão
-	4 -> connection : Host name/address = (link endpoint copiado) ; user = postgres ; senha = postgres
-	5 -> click em 'save'/'salvar'
+	11 -> abrimos o menu EC2 em outra aba e buscamos por 'grupos de segurança'
+	12 -> click no id do grupo de segurança
+	13 -> click em 'editar regras de entrada'
+	14 -> click em 'adicionar regra'
+	15 -> SSH - TCP - PORTA 22 - 18.228.70.32/29
+		  na pior das hipoteses procuramos manualmente o IP da nossa região em:
+		  https://ip-ranges.amazonaws.com/ip-ranges.json
+		  buscamos: "region": "sa-east-1", "service": "EC2_INSTANCE_CONNECT"
+	16 -> 'salvar regras'
+	17 -> voltamos naquela pagina de conexão e conectamos
 
-	Criando o banco de dados no esquema de aws:
-	1 -> na aba, expandimos 'aws', expandimos 'databases'
-	2 -> click direito em 'databases' > create > database...
-	3 -> general : name = livraria
-	4 -> damos um save
+	18 -> daremos alguns comandos linux na máquina virtual que irá abrir
+		  sudo yum update
+		  - para atualizar o linux da maquina virtual
+		  sudo yum install docker
+		  y
+		  - para instalar o docker em nossa máquina
+		  sudo service docker start
+		  - inicia o serviço docker
+		  sudo docker ps
+		  - para testar se está funcionando
 
-	Criando as tabelas:
-	1 -> abrimo a query tool do banco recem criado
-	2 -> colamos os scripts da file txt 'comandos-tabelas' (presente nos arquivos do projeto) e rodamos
-	3 -> rodamos também a linha de código que cria extensão uuid (também está na comandos-tabelas)
-	4 -> rodamos os inserts (do arquivo JSON-para-testes)
-		 OBS: Lembrar de criptografar as senhas (dos usuarios) em: https://bcrypt-generator.com/
-
-	Criando conexão com nossa aplicação:
-	1 -> acessamos as variáveis de ambiente na IDE
-	2 -> modificamos usuario e senha do banco sendo ambos 'postgres'
-	3 -> na url do banco:
-		 jdbc:postgresql://(Endpoint do banco aws):5432/livraria
-
-	OBS: lembrar de stopar o deploy no docker para desocupar a porta
-	OBS: lembrar de definir a IDE para rodar a aplicação local
-
-	Teste no postman:
-	1 -> Rodar a aplicação
-	2 -> no postman, vamos no pacote OAuth2, na requisição Authorization Code - Postman
-	3 -> damos um clear e um get new acess token
-	4 -> logamos e copiamos o token
-	5 -> realizamos alguma requisição para testar (lembrando de usar autorização bearer token)
+	OBS: proximo commit iniciarei o container
 	*/
 
 }
