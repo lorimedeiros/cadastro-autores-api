@@ -1,5 +1,0 @@
-## link do contrato da API de Autores
-https://whimsical.com/cadastro-de-autor-8jTJxcmJu3pFjKhDp35msT
-
-## link do contrato da API de Livros
-https://whimsical.com/cadastro-de-livros-9DSAXP3UZJdBMybJKQmLSd
