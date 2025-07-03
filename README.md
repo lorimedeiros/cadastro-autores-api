@@ -10,6 +10,15 @@ Uma API RESTful desenvolvida em Java com Spring Boot para gerenciamento de autor
 ✔ DTOs (Data Transfer Objects) – Padrão para transferência de dados entre camadas  
 ✔ Tratamento de Exceções – Respostas personalizadas para erros  
 ✔ Validações – Restrições nos campos para garantir dados consistentes  
+✔ Documentação - Com Swagger
+
+## 🔐 Autenticação
+* POST /auth/login – Gera um token JWT válido
+* Endpoints protegidos – Requerem o token no header (Authorization: Bearer <token>)
 
 ## 📌 Objetivo
-Este projeto foi desenvolvido para praticar conceitos de APIs REST, boas práticas de Spring Boot e gestão de dados. Pode ser integrado com um front-end (React, Angular, etc.) para criar um sistema completo de cadastro.
+Este projeto foi desenvolvido para praticar:
+* APIs REST com Spring Boot
+* Autenticação JWT e Spring Security
+* Integração com PostgreSQL em ambiente Dockerizado
+* Boas práticas de arquitetura e segurança
