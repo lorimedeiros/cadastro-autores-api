@@ -1,5 +1,5 @@
 ## 🔧 API de Cadastro de Autores
-Uma API RESTful desenvolvida em Java com Spring Boot para gerenciamento de autores, incluindo operações CRUD (Create, Read, Update, Delete).
+Uma API RESTful desenvolvida em Java com Spring Boot para gerenciamento de autores e livros de uma livraria, incluindo operações CRUD (Create, Read, Update, Delete).
 
 ## 💡 Tecnologias e Funcionalidades
 ✔ Spring Boot – Framework para desenvolvimento  
